@@ -81940,6 +81940,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/app.css":
+/*!*******************************!*\
+  !*** ./resources/css/app.css ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -83949,7 +83960,7 @@ var Menu = function (_a) {
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: "/" },
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "menu__logo" },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: "menu__logo--main" },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: "menu__logo--red" }, "Praktyczny"),
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: "menu__logo--red text-blue-500 text-3xl font-bold underline" }, "Praktyczny"),
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: "menu__logo--blue" }, "Angielski")),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: "menu__logo--description" }, "Ucz si\u0119 angielskiego jakiego potrzebujesz!"))),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "menu__right" },
@@ -84523,26 +84534,15 @@ function configureStore(initialState) {
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***********************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/css/app.css ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/szymonradosz/Desktop/projects/wordsTranslationChromeExtensionMonorepo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/szymonradosz/Desktop/projects/wordsTranslationChromeExtensionMonorepo/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/szymonradosz/Desktop/projects/wordsTranslationChromeExtensionMonorepo/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

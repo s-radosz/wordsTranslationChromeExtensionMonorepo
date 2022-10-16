@@ -17,7 +17,9 @@ const Menu = ({ translation, user, logoutUser, handleChangePath }) => {
                 <Link to="/">
                     <div className="menu__logo">
                         <p className="menu__logo--main">
-                            <span className="menu__logo--red">Praktyczny</span>
+                            <span className="menu__logo--red text-blue-500 text-3xl font-bold underline">
+                                Praktyczny
+                            </span>
                             <span className="menu__logo--blue">Angielski</span>
                         </p>
                         <p className="menu__logo--description">
