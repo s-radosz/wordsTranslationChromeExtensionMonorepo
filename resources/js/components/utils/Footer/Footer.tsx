@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="homepage__footer--wrapper">
                 <div className="homepage__footer--left">
                     <p>
-                        &copy; {new Date().getFullYear()} words Translation
+                        &copy; {new Date()?.getFullYear()} words Translation
                         Chrome Extension Monorepo{" "}
                     </p>
                 </div>

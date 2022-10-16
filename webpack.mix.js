@@ -1,4 +1,3 @@
-
 let mix = require("laravel-mix");
 
 mix.js("resources/js/app.js", "public/js")
@@ -13,8 +12,8 @@ mix.js("resources/js/app.js", "public/js")
                 },
                 {
                     test: /\.mp4$/,
-                    use: 'file-loader?name=videos/[name].[ext]'
-                },
+                    use: "file-loader?name=videos/[name].[ext]"
+                }
                 // {
                 //     test: /\.(png|jpg|gif)$/i,
                 //     use: [
@@ -34,4 +33,7 @@ mix.js("resources/js/app.js", "public/js")
         resolve: {
             extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
         }
+    })
+    .babelConfig({
+        plugins: ["@babel/plugin-proposal-optional-chaining"]
     });

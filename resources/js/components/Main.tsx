@@ -12,12 +12,12 @@ import Menu from "./utils/Menu/Menu";
 import Footer from "./utils/Footer/Footer";
 import Home from "./Home/Home";
 import Register from "./Register/Register";
-import Dashboard from "./Dashboard/Dashboard"
+import Dashboard from "./Dashboard/Dashboard";
 import Login from "./Login/Login";
 import { MainProps, MainState } from "./Main.interface";
 import { Provider as ReduxProvider } from "react-redux";
 import configureStore from "./../modules/store";
-import LoginCheckMiddleware from "./helpers/LoginCheckMiddleware"
+import LoginCheckMiddleware from "./helpers/LoginCheckMiddleware";
 
 //@ts-ignore
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
@@ -65,9 +65,9 @@ class Main extends Component<MainProps, MainState> {
     }
 
     checkAllowedPath = (path: string) => {
-        const allowedPaths = this.state.allowedPaths;
+        const allowedPaths = this?.state?.allowedPaths;
 
-        if (allowedPaths.includes(path.split("/")[1])) {
+        if (allowedPaths?.includes(path?.split("/")[1])) {
             //console.log(["path", path, path.split("/")[1]]);
             return <Redirect to={path} />;
         } else {
@@ -78,7 +78,7 @@ class Main extends Component<MainProps, MainState> {
     handleChangePath = (path: string) => {
         const { allowedPaths } = this.state;
 
-        if (allowedPaths.includes(path.split("/")[0])) {
+        if (allowedPaths?.includes(path?.split("/")[0])) {
             this.setState({ allowRedirect: true, redirectedPath: path });
         } else {
             this.setState({ allowRedirect: true, redirectedPath: "/" });
@@ -109,7 +109,7 @@ class Main extends Component<MainProps, MainState> {
             alertMessage,
             alertStatus,
             allowRedirect,
-            redirectedPath,
+            redirectedPath
         } = this.state;
 
         return (
@@ -129,22 +129,24 @@ class Main extends Component<MainProps, MainState> {
                         )}
 
                         <Switch>
-                            {this.routes.map(
-                                ({ path, name, Component }) => {
-                                    return (
-                                        <Route
-                                            exact
-                                            key={`path-${name}`}
-                                            path={path}
-                                        >
-                                            <Component
-                                                handleChangePath={this.handleChangePath}
-                                                handleShowAlert={this.handleShowAlert}
-                                            />
-                                        </Route>
-                                    );
-                                }
-                            )}
+                            {this?.routes?.map(({ path, name, Component }) => {
+                                return (
+                                    <Route
+                                        exact
+                                        key={`path-${name}`}
+                                        path={path}
+                                    >
+                                        <Component
+                                            handleChangePath={
+                                                this.handleChangePath
+                                            }
+                                            handleShowAlert={
+                                                this.handleShowAlert
+                                            }
+                                        />
+                                    </Route>
+                                );
+                            })}
                         </Switch>
                     </div>
                     <Footer />
@@ -155,4 +157,3 @@ class Main extends Component<MainProps, MainState> {
 }
 
 export default Main;
-

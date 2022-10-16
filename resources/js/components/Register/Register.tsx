@@ -18,20 +18,14 @@ const Register = ({
     const handleSubmit = (email, password, name) => {
         if (email && password && name) {
             axios
-                .post(
-                    `${config &&
-                        config.paths &&
-                        config.paths.API_URL &&
-                        config.paths.API_URL}/register`,
-                    {
-                        email: email,
-                        password: password,
-                        name: name,
-                        user_level_id: selectedLevelId
-                    }
-                )
+                .post(`${config?.paths?.API_URL}/register`, {
+                    email: email,
+                    password: password,
+                    name: name,
+                    user_level_id: selectedLevelId
+                })
                 .then(res => {
-                    createUser(res.data.result);
+                    createUser(res?.data?.result);
                     handleShowAlert(
                         `Poprawnie utworzono nowego użytkownika`,
                         "success"
@@ -50,10 +44,11 @@ const Register = ({
     };
 
     const getUserLevels = () => {
+        // console.log(["process?.env?.MIX_APP_URL", process?.env?.MIX_APP_URL]);
         axios
             .get(`${process.env.MIX_APP_URL}/api/user-levels/all`)
             .then(res => {
-                setLevelList(res.data.result);
+                setLevelList(res?.data?.result);
             });
     };
 
@@ -70,12 +65,12 @@ const Register = ({
                     password: "",
                     setSelectedLevelId: ""
                 }}
-                validationSchema={Yup.object().shape({
-                    email: Yup.string()
-                        .email("Email jest nieprawidłowy")
-                        .required("Email jest wymagany"),
-                    name: Yup.string().required("Imię jest wymagane"),
-                    password: Yup.string().required("Hasło jest wymagane")
+                validationSchema={Yup?.object()?.shape({
+                    email: Yup?.string()
+                        ?.email("Email jest nieprawidłowy")
+                        ?.required("Email jest wymagany"),
+                    name: Yup?.string()?.required("Imię jest wymagane"),
+                    password: Yup?.string()?.required("Hasło jest wymagane")
                 })}
                 onSubmit={(fields: {
                     name: string;
@@ -83,7 +78,7 @@ const Register = ({
                     password: string;
                     setSelectedLevelId: string;
                 }) => {
-                    handleSubmit(fields.email, fields.password, fields.name);
+                    handleSubmit(fields?.email, fields?.password, fields?.name);
                 }}
                 render={({ errors, touched }) => (
                     <Form>
@@ -94,7 +89,7 @@ const Register = ({
                                 type="text"
                                 className={
                                     "form-control" +
-                                    (errors.name && touched.name
+                                    (errors?.name && touched?.name
                                         ? " is-invalid"
                                         : "")
                                 }
@@ -112,7 +107,7 @@ const Register = ({
                                 type="email"
                                 className={
                                     "form-control" +
-                                    (errors.email && touched.email
+                                    (errors?.email && touched?.email
                                         ? " is-invalid"
                                         : "")
                                 }
@@ -130,7 +125,7 @@ const Register = ({
                                 type="password"
                                 className={
                                     "form-control" +
-                                    (errors.password && touched.password
+                                    (errors?.password && touched?.password
                                         ? " is-invalid"
                                         : "")
                                 }
@@ -143,15 +138,20 @@ const Register = ({
                         </div>
                         <label>Jak oceniasz swój poziom angielskiego?</label>
                         <select
-                            onChange={e => setSelectedLevelId(e.target.value)}
+                            onChange={e => setSelectedLevelId(e?.target?.value)}
                         >
-                            {levelList.map((level, i) => {
-                                return (
-                                    <option value={level.id} key={level.id}>
-                                        {level.level}
-                                    </option>
-                                );
-                            })}
+                            {levelList?.length
+                                ? levelList?.map((level, i) => {
+                                      return (
+                                          <option
+                                              value={level?.id}
+                                              key={level?.id}
+                                          >
+                                              {level?.level}
+                                          </option>
+                                      );
+                                  })
+                                : null}
                         </select>
                         <div className="form-group">
                             <button

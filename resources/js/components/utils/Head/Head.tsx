@@ -2,8 +2,8 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 
 type headType = {
-    title: string
-}
+    title: string;
+};
 
 const Head = ({ title }: headType) => {
     return (
