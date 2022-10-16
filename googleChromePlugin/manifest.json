@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Words saver",
+    "description": "Learn saved words you don't know later",
+    "version": "1.0.5",
+    "author": "Szymon Radosz",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Words saver"
+    },
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "permissions": [
+        "contextMenus",
+        "storage",
+        "http://words.radoszszymon.usermd.net",
+        "http://words.radoszszymon.usermd.net/api/login",
+        "http://words.radoszszymon.usermd.net/api/words/save"
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    }
+}
