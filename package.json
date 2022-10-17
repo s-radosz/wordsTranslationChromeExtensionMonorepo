@@ -31,6 +31,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.3",
     "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.3.0",
@@ -113,9 +114,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "eslint",
-      "prettier --write ."
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint",
+    "*.{js,jsx,ts,tsx,css,scss,json}": "prettier --write"
   }
 }

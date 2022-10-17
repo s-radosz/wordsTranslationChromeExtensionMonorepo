@@ -1,10 +1,10 @@
-import actionTypes from "./../actionTypes"
+import actionTypes from './../actionTypes'
 
-const setTranslations = translations => ({
-    type: actionTypes.SET_TRANSLATIONS,
-    payload: translations
-});
+const setTranslations = (translations) => ({
+  type: actionTypes.SET_TRANSLATIONS,
+  payload: translations,
+})
 
 export default {
-    setTranslations
-};
+  setTranslations,
+}

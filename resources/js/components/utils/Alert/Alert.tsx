@@ -1,16 +1,16 @@
-import * as React from "react";
+import * as React from 'react'
 
 type alertType = {
-    message: string,
-    status: string
+  message: string
+  status: string
 }
 
 const Alert = ({ message, status }: alertType) => {
-    return (
-        <div className={`alert alert-${status} alert-dismissible`} role="alert">
-            <strong>{message}</strong>
-        </div>
-    );
-};
+  return (
+    <div className={`alert alert-${status} alert-dismissible`} role='alert'>
+      <strong>{message}</strong>
+    </div>
+  )
+}
 
-export default Alert;
+export default Alert

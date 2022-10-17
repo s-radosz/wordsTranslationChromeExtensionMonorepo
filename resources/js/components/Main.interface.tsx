@@ -1,13 +1,12 @@
-interface MainProps {
-}
+interface MainProps {}
 
 interface MainState {
-    showLoader: boolean;
-    alertMessage: string;
-    alertStatus: string;
-    allowedPaths: string[],
-    allowRedirect: boolean;
-    redirectedPath: string;
+  showLoader: boolean
+  alertMessage: string
+  alertStatus: string
+  allowedPaths: string[]
+  allowRedirect: boolean
+  redirectedPath: string
 }
 
-export { MainProps, MainState };
+export { MainProps, MainState }
