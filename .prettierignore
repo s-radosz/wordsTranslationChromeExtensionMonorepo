@@ -9,3 +9,14 @@ composer.lock
 enzyme.config.js 
 fileMock.js 
 jest.config.js 
+app
+bootstrap
+config
+coverage
+database
+googleChromePlugin
+public
+routes
+storage
+tests
+vandor
