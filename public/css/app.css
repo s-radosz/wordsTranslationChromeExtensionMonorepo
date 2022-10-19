@@ -746,8 +746,8 @@ a:visited {
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
     /*
-    Label the data
-    */
+        Label the data
+        */
   }
 
   .dashboard .pagination {
