@@ -28,7 +28,7 @@ class Main extends Component<MainProps, MainState> {
       showLoader: false,
       alertMessage: '',
       alertStatus: '',
-      allowedPaths: ['panel'],
+      allowedPaths: ['panel', 'login', 'register'],
       allowRedirect: false,
       redirectedPath: '',
     }
@@ -37,33 +37,42 @@ class Main extends Component<MainProps, MainState> {
 
     this.routes = [
       {
-        path: '/rejestracja',
+        path: '/register',
         name: 'Register',
         Component: Register,
+        public: true,
       },
       {
-        path: '/logowanie',
+        path: '/login',
         name: 'Login',
         Component: Login,
+        public: true,
       },
       {
         path: '/panel',
         name: 'Dashboard',
         Component: Dashboard,
+        public: false,
       },
       {
         path: '/',
         name: 'Home',
         Component: Home,
+        public: true,
       },
     ]
+  }
+
+  componentDidMount(): void {
+    if (window.location.pathname.split('/').pop()) {
+      this.handleChangePath(window.location.pathname.split('/').pop())
+    }
   }
 
   checkAllowedPath = (path: string) => {
     const allowedPaths = this?.state?.allowedPaths
 
     if (allowedPaths?.includes(path?.split('/')[1])) {
-      //console.log(["path", path, path.split("/")[1]]);
       return <Redirect to={path} />
     } else {
       return <Redirect to='/' />
@@ -72,8 +81,12 @@ class Main extends Component<MainProps, MainState> {
 
   handleChangePath = (path: string) => {
     const { allowedPaths } = this.state
+    const user = localStorage?.getItem('user')
+    const pathData = this.routes?.find((foundPath) => foundPath.path === `/${path}`)
 
-    if (allowedPaths?.includes(path?.split('/')[0])) {
+    if (!pathData?.public && user) {
+      this.setState({ allowRedirect: true, redirectedPath: path })
+    } else if (pathData?.public && pathData?.path) {
       this.setState({ allowRedirect: true, redirectedPath: path })
     } else {
       this.setState({ allowRedirect: true, redirectedPath: '/' })

@@ -100,7 +100,6 @@ function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
-
   return self;
 }
 
@@ -125,7 +124,6 @@ function _defineProperties(target, props) {
     Object.defineProperty(target, descriptor.key, descriptor);
   }
 }
-
 function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
@@ -148,20 +146,17 @@ function _createClass(Constructor, protoProps, staticProps) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _extends; });
 function _extends() {
-  _extends = Object.assign || function (target) {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
-
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
       }
     }
-
     return target;
   };
-
   return _extends.apply(this, arguments);
 }
 
@@ -202,13 +197,11 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   var target = {};
   var sourceKeys = Object.keys(source);
   var key, i;
-
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
     if (excluded.indexOf(key) >= 0) continue;
     target[key] = source[key];
   }
-
   return target;
 }
 
@@ -225,11 +218,10 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _setPrototypeOf; });
 function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
-
   return _setPrototypeOf(o, p);
 }
 
@@ -249,7 +241,6 @@ function _taggedTemplateLiteralLoose(strings, raw) {
   if (!raw) {
     raw = strings.slice(0);
   }
-
   strings.raw = raw;
   return strings;
 }
@@ -264,22 +255,19 @@ function _taggedTemplateLiteralLoose(strings, raw) {
 /***/ (function(module, exports) {
 
 function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
+  module.exports = _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
-
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
       }
     }
-
     return target;
   }, module.exports.__esModule = true, module.exports["default"] = module.exports;
   return _extends.apply(this, arguments);
 }
-
 module.exports = _extends, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
@@ -83315,8 +83303,14 @@ var Main = (function (_super) {
             }
         };
         _this.handleChangePath = function (path) {
+            var _a;
             var allowedPaths = _this.state.allowedPaths;
-            if (allowedPaths === null || allowedPaths === void 0 ? void 0 : allowedPaths.includes(path === null || path === void 0 ? void 0 : path.split('/')[0])) {
+            var user = localStorage === null || localStorage === void 0 ? void 0 : localStorage.getItem('user');
+            var pathData = (_a = _this.routes) === null || _a === void 0 ? void 0 : _a.find(function (foundPath) { return foundPath.path === "/".concat(path); });
+            if (!(pathData === null || pathData === void 0 ? void 0 : pathData.public) && user) {
+                _this.setState({ allowRedirect: true, redirectedPath: path });
+            }
+            else if ((pathData === null || pathData === void 0 ? void 0 : pathData.public) && (pathData === null || pathData === void 0 ? void 0 : pathData.path)) {
                 _this.setState({ allowRedirect: true, redirectedPath: path });
             }
             else {
@@ -83339,35 +83333,44 @@ var Main = (function (_super) {
             showLoader: false,
             alertMessage: '',
             alertStatus: '',
-            allowedPaths: ['panel'],
+            allowedPaths: ['panel', 'login', 'register'],
             allowRedirect: false,
             redirectedPath: '',
         };
         _this.history = _History__WEBPACK_IMPORTED_MODULE_2__["default"];
         _this.routes = [
             {
-                path: '/rejestracja',
+                path: '/register',
                 name: 'Register',
                 Component: _Register_Register__WEBPACK_IMPORTED_MODULE_7__["default"],
+                public: true,
             },
             {
-                path: '/logowanie',
+                path: '/login',
                 name: 'Login',
                 Component: _Login_Login__WEBPACK_IMPORTED_MODULE_9__["default"],
+                public: true,
             },
             {
                 path: '/panel',
                 name: 'Dashboard',
                 Component: _Dashboard_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"],
+                public: false,
             },
             {
                 path: '/',
                 name: 'Home',
                 Component: _Home_Home__WEBPACK_IMPORTED_MODULE_6__["default"],
+                public: true,
             },
         ];
         return _this;
     }
+    Main.prototype.componentDidMount = function () {
+        if (window.location.pathname.split('/').pop()) {
+            this.handleChangePath(window.location.pathname.split('/').pop());
+        }
+    };
     Main.prototype.render = function () {
         var _this = this;
         var _a;
@@ -83961,8 +83964,8 @@ var Menu = function (_a) {
                             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/panel', className: 'menu-link' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'startLearning'))),
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'menu-btn blue-btn', onClick: handleLogout }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'logOut')))) : (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null,
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'menu__right-routes--top' },
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/logowanie', className: 'menu-link' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'login'))),
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/rejestracja' },
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/login', className: 'menu-link' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'login'))),
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/register' },
                             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'red-btn box-shadow' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'register'))))),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_LanguageSwitch_LanguageSwitch__WEBPACK_IMPORTED_MODULE_4__["default"], null))))));
 };

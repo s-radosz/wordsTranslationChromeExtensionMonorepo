@@ -46,11 +46,11 @@ const Menu = ({ translation, user, logoutUser, handleChangePath }) => {
             ) : (
               <>
                 <div className='menu__right-routes--top'>
-                  <Link to='/logowanie' className='menu-link'>
+                  <Link to='/login' className='menu-link'>
                     {useReturnTranslation(translation, 'login')}
                   </Link>
                 </div>
-                <Link to='/rejestracja'>
+                <Link to='/register'>
                   <button className='red-btn box-shadow'>
                     {useReturnTranslation(translation, 'register')}
                   </button>
