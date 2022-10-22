@@ -7,7 +7,7 @@ const Footer = () => {
     <div className='homepage__footer--container'>
       <div className='homepage__footer--wrapper'>
         <div className='homepage__footer--left'>
-          <p>&copy; {new Date()?.getFullYear()} words Translation Chrome Extension Monorepo </p>
+          <p>&copy; {new Date()?.getFullYear()} 1 words Translation Chrome Extension Monorepo </p>
         </div>
         <div className='homepage__footer--right'>
           <a href='https://www.facebook.com' title='Odwiedź stronę na facebook' target='_blank'>
