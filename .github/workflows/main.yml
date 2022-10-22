@@ -21,12 +21,13 @@ jobs:
       run: php artisan config:clear
     - name: Update composer reqs
       run: COMPOSER_MEMORY_LIMIT=-1 composer update --ignore-platform-reqs
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+    - name: 📂 Sync Files
+      uses: SamKirkland/web-deploy@v1
       with:
-        server: ${{ secrets.WORDS_APP_SITE_SERVER}}
-        username: ${{ secrets.WORDS_APP_SITE_USER}}
-        password: ${{ secrets.WORDS_APP_SITE_PASS}}
+        target-server: ${{ secrets.WORDS_APP_SSH_SERVER }}
+        remote-user: ${{ secrets.WORDS_APP_SSH_USER }}
+        private-ssh-key: ${{ secrets.WORDS_APP_SSH_PASSWORD }}
+        destination-path: ${{ secrets.WORDS_APP_SSH_PROJECT_DIRECTORY }}
     - name: Move js files to public directory outside code repo directory
       run: ${{ secrets.WORDS_APP_COPY_JS_FILES}}
     - name: Move css files to public directory outside code repo directory
