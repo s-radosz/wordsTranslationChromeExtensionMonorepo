@@ -26,7 +26,7 @@ jobs:
       with:
         target-server: ${{ secrets.WORDS_APP_SSH_SERVER }}
         remote-user: ${{ secrets.WORDS_APP_SSH_USER }}
-        private-ssh-key: ${{ secrets.WORDS_APP_SSH_PASSWORD }}
+        private-ssh-key: ${{ secrets.WORDS_APP_SSH_KEY }}
         destination-path: ${{ secrets.WORDS_APP_SSH_PROJECT_DIRECTORY }}
     - name: Move js files to public directory outside code repo directory
       run: ${{ secrets.WORDS_APP_COPY_JS_FILES}}
