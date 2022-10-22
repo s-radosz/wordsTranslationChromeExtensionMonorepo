@@ -21,6 +21,7 @@ const LoginForm = ({ handleSubmit }) => {
               placeholder='Email'
               type='text'
               className={'form-control' + (errors?.email && touched?.email ? ' is-invalid' : '')}
+              id='login-email-input'
             />
             <ErrorMessage name='email' component='div' className='invalid-feedback' />
           </div>
@@ -32,11 +33,12 @@ const LoginForm = ({ handleSubmit }) => {
               className={
                 'form-control' + (errors?.password && touched?.password ? ' is-invalid' : '')
               }
+              id='login-password-input'
             />
             <ErrorMessage name='password' component='div' className='invalid-feedback' />
           </div>
           <div className='form-group'>
-            <button type='submit' className='btn red-btn box-shadow'>
+            <button type='submit' className='btn red-btn box-shadow' id='login-submit'>
               Zaloguj
             </button>
           </div>

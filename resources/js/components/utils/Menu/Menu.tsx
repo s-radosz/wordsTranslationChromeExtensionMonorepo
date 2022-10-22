@@ -39,7 +39,7 @@ const Menu = ({ translation, user, logoutUser, handleChangePath }) => {
                     {useReturnTranslation(translation, 'startLearning')}
                   </Link>
                 </div>
-                <button className='menu-btn blue-btn' onClick={handleLogout}>
+                <button className='menu-btn blue-btn' onClick={handleLogout} id='logout-btn'>
                   {useReturnTranslation(translation, 'logOut')}
                 </button>
               </>
