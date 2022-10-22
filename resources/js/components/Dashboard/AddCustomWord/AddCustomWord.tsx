@@ -58,9 +58,10 @@ const AddCustomWord = ({ handleShowAlert, user, words, config, createWords }) =>
           type='string'
           value={word}
           onChange={(e) => setWord(e?.target?.value)}
+          id='custom-new-word-input'
         />
         <div className='form-group'>
-          <button type='submit' className='btn red-btn box-shadow'>
+          <button type='submit' className='btn red-btn box-shadow' id='custom-new-word-submit'>
             Dodaj słowo
           </button>
         </div>

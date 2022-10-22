@@ -9,7 +9,7 @@ const WordsList = ({ handlePageClick, handleAddIllustration, handleRemoveWord, w
     <>
       {words?.result?.data?.length && (
         <div className='table-responsive'>
-          <table className='table'>
+          <table className='table' id='words-table'>
             <thead>
               <tr>
                 <th scope='col'>#</th>

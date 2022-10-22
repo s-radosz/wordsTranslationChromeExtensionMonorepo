@@ -82081,9 +82081,9 @@ var AddCustomWord = function (_a) {
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'add-custom-word__container dashboard__practice-words-section--container' },
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "Dodaj nowe s\u0142owo"),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("form", { onSubmit: handleSubmit },
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", { placeholder: 'Wklej s\u0142owo do przet\u0142umaczenia', type: 'string', value: word, onChange: function (e) { var _a; return setWord((_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.value); } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", { placeholder: 'Wklej s\u0142owo do przet\u0142umaczenia', type: 'string', value: word, onChange: function (e) { var _a; return setWord((_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.value); }, id: 'custom-new-word-input' }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'form-group' },
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { type: 'submit', className: 'btn red-btn box-shadow' }, "Dodaj s\u0142owo")))));
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { type: 'submit', className: 'btn red-btn box-shadow', id: 'custom-new-word-submit' }, "Dodaj s\u0142owo")))));
 };
 var mapStateToProps = function (state) { return ({
     user: state.user,
@@ -82862,7 +82862,7 @@ var WordsList = function (_a) {
     var _b, _c, _d, _e, _f;
     var handlePageClick = _a.handlePageClick, handleAddIllustration = _a.handleAddIllustration, handleRemoveWord = _a.handleRemoveWord, words = _a.words;
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, ((_c = (_b = words === null || words === void 0 ? void 0 : words.result) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'table-responsive' },
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("table", { className: 'table' },
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("table", { className: 'table', id: 'words-table' },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("thead", null,
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("tr", null,
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'col' }, "#"),
@@ -82910,7 +82910,7 @@ var WordsListRow = function (_a) {
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, word === null || word === void 0 ? void 0 : word.pl)),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'btn red-btn box-shadow', onClick: function () { return handleRemoveWord(word === null || word === void 0 ? void 0 : word.id); } }, "Usu\u0144")),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'btn red-btn box-shadow', onClick: function () { return handleRemoveWord(word === null || word === void 0 ? void 0 : word.id); }, id: "delete-row-".concat(word === null || word === void 0 ? void 0 : word.en) }, "Usu\u0144")),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'btn blue-btn box-shadow', onClick: function () { return handleAddIllustration(word === null || word === void 0 ? void 0 : word.id); } }, "Dodaj ilustracj\u0119"))));
 };

@@ -11,7 +11,11 @@ const WordsListRow = ({ word, handleRemoveWord, handleAddIllustration, i }) => {
         <p>{word?.pl}</p>
       </td>
       <td>
-        <button className='btn red-btn box-shadow' onClick={() => handleRemoveWord(word?.id)}>
+        <button
+          className='btn red-btn box-shadow'
+          onClick={() => handleRemoveWord(word?.id)}
+          id={`delete-row-${word?.en}`}
+        >
           Usuń
         </button>
       </td>
