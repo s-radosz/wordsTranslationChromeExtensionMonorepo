@@ -16,7 +16,6 @@ jobs:
       with:
         username: ${{ secrets.WORDS_APP_SSH_USER }}
         host: ${{ secrets.WORDS_APP_SSH_SERVER }}
-        password: ${{ secrets.WORDS_APP_SSH_PASSWORD }}
         port: 21
         key: ${{ secrets.WORDS_APP_SSH_KEY }}
         script: ${{ secrets.WORDS_APP_REDIRECT_AND_RUN_SH_FILE }}
