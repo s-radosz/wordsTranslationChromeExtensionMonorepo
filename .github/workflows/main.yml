@@ -22,11 +22,11 @@ jobs:
     - name: Update composer reqs
       run: COMPOSER_MEMORY_LIMIT=-1 composer update --ignore-platform-reqs
     - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
-        server: ${{ secrets.LARAVEL_SITE_SERVER}}
-        username: ${{ secrets.LARAVEL_SITE_USER}}
-        password: ${{ secrets.LARAVEL_SITE_PASS}}
+        server: ${{ secrets.WORDS_APP_SITE_SERVER}}
+        username: ${{ secrets.WORDS_APP_SITE_USER}}
+        password: ${{ secrets.WORDS_APP_SITE_PASS}}
     - name: Move js files to public directory outside code repo directory
       run: ${{ secrets.WORDS_APP_COPY_JS_FILES}}
     - name: Move css files to public directory outside code repo directory
