@@ -82780,7 +82780,7 @@ var PracticeWordsSection = function (_a) {
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, allowPracticeWords
             ? 'Powtarzaj zapisane słownictwo'
             : 'Nie masz jeszcze żadnych zapisanych słów'),
-        allowPracticeWords && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'btn red-btn box-shadow', onClick: function () { return setShowPracticeWordsModal(true); } }, "Zaczynajmy"))));
+        allowPracticeWords && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'btn red-btn box-shadow', onClick: function () { return setShowPracticeWordsModal(true); }, id: 'start-practice-button' }, "Zaczynajmy"))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (PracticeWordsSection);
 

@@ -9,7 +9,11 @@ const PracticeWordsSection = ({ setShowPracticeWordsModal, allowPracticeWords })
           : 'Nie masz jeszcze żadnych zapisanych słów'}
       </p>
       {allowPracticeWords && (
-        <button className='btn red-btn box-shadow' onClick={() => setShowPracticeWordsModal(true)}>
+        <button
+          className='btn red-btn box-shadow'
+          onClick={() => setShowPracticeWordsModal(true)}
+          id='start-practice-button'
+        >
           Zaczynajmy
         </button>
       )}
