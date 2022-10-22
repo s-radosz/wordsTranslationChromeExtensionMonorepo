@@ -10,11 +10,12 @@ jobs:
     steps:
     - name: Get the latest code
       uses: actions/checkout@v2.3.2
-    - uses: actions/setup-node@master
-    - name: Deploy to production
-      uses: appleboy/ssh-action@master
+    - uses: actions/setup-node@master 
+    - name: deploy
+      uses: fifsky/ssh-action@master
       with:
-        username: ${{ secrets.WORDS_APP_SSH_USER }}
+        command: ${{ secrets.WORDS_APP_REDIRECT_AND_RUN_SH_FILE }}
         host: ${{ secrets.WORDS_APP_SSH_SERVER }}
-        password: ${{ secrets.WORDS_APP_SSH_PASSWORD }}
+        user: ${{ secrets.WORDS_APP_SSH_USER }}
+        pass: ${{ secrets.WORDS_APP_SSH_PASSWORD }}
     
