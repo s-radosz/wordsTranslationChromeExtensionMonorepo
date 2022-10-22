@@ -19,10 +19,6 @@ jobs:
       run: php artisan cache:clear
     - name: Clear laravel config cache
       run: php artisan config:clear
-    - name: Move js files to public directory outside code repo directory
-      run: ${{ secrets.WORDS_APP_COPY_JS_FILES}}
-    - name: Move css files to public directory outside code repo directory
-      run: ${{ secrets.WORDS_APP_COPY_CSS_FILES}}
     - name: Update composer reqs
       run: COMPOSER_MEMORY_LIMIT=-1 composer update --ignore-platform-reqs
     - name: 📂 Sync files
@@ -31,3 +27,8 @@ jobs:
         server: ${{ secrets.LARAVEL_SITE_SERVER}}
         username: ${{ secrets.LARAVEL_SITE_USER}}
         password: ${{ secrets.LARAVEL_SITE_PASS}}
+    - name: Move js files to public directory outside code repo directory
+      run: ${{ secrets.WORDS_APP_COPY_JS_FILES}}
+    - name: Move css files to public directory outside code repo directory
+      run: ${{ secrets.WORDS_APP_COPY_CSS_FILES}}
+    
