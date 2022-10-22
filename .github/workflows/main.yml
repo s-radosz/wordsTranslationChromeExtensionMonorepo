@@ -11,25 +11,10 @@ jobs:
     - name: Get the latest code
       uses: actions/checkout@v2.3.2
     - uses: actions/setup-node@master
-    - name: Installing composer reqs
-      run: COMPOSER_MEMORY_LIMIT=-1 composer install --ignore-platform-reqs
-    - name: Installing npm reqs
-      run: npm i --force
-    - name: Clear laravel cache
-      run: php artisan cache:clear
-    - name: Clear laravel config cache
-      run: php artisan config:clear
-    - name: Update composer reqs
-      run: COMPOSER_MEMORY_LIMIT=-1 composer update --ignore-platform-reqs
-    - name: 📂 Sync Files
-      uses: SamKirkland/web-deploy@v1
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
       with:
-        target-server: ${{ secrets.WORDS_APP_SSH_SERVER }}
-        remote-user: ${{ secrets.WORDS_APP_SSH_USER }}
-        private-ssh-key: ${{ secrets.WORDS_APP_SSH_KEY }}
-        destination-path: ${{ secrets.WORDS_APP_SSH_PROJECT_DIRECTORY }}
-    - name: Move js files to public directory outside code repo directory
-      run: ${{ secrets.WORDS_APP_COPY_JS_FILES}}
-    - name: Move css files to public directory outside code repo directory
-      run: ${{ secrets.WORDS_APP_COPY_CSS_FILES}}
+        username: ${{ secrets.WORDS_APP_SSH_USER }}
+        host: ${{ secrets.WORDS_APP_SSH_SERVER }}
+        password: ${{ secrets.WORDS_APP_SSH_PASSWORD }}
     
