@@ -82028,7 +82028,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 var AddCustomWord = function (_a) {
-    var handleShowAlert = _a.handleShowAlert, user = _a.user, words = _a.words, config = _a.config, createWords = _a.createWords;
+    var handleShowAlert = _a.handleShowAlert, user = _a.user, words = _a.words, config = _a.config, createWords = _a.createWords, getUserWordsInfo = _a.getUserWordsInfo;
     var _b = react__WEBPACK_IMPORTED_MODULE_0__["useState"](''), word = _b[0], setWord = _b[1];
     var handleSubmit = function (e) {
         e.preventDefault();
@@ -82060,6 +82060,7 @@ var AddCustomWord = function (_a) {
                                             case 1:
                                                 wordsResult = _b.sent();
                                                 createWords(wordsResult);
+                                                getUserWordsInfo();
                                                 return [2, handleShowAlert("Poprawnie zapisano - ".concat(word, " - ").concat(translatedWord), 'success')];
                                         }
                                     });
@@ -82234,6 +82235,7 @@ var Dashboard = function (_a) {
                 case 1:
                     _b.sent();
                     removeWord(id);
+                    getUserWordsInfo();
                     handleShowAlert('Prawidłowo usunięto.', 'success');
                     return [2];
             }
@@ -82256,13 +82258,16 @@ var Dashboard = function (_a) {
         setShowIllustrationModal(true);
         setCurrentWordIdIllustration(id);
     };
-    react__WEBPACK_IMPORTED_MODULE_0__["useEffect"](function () {
+    var getUserWordsInfo = function () {
         getUserWordCounts();
         handleCheckWordsList();
+    };
+    react__WEBPACK_IMPORTED_MODULE_0__["useEffect"](function () {
+        getUserWordsInfo();
     }, [user === null || user === void 0 ? void 0 : user.id]);
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'dashboard' },
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Statistics_Statistics__WEBPACK_IMPORTED_MODULE_6__["default"], { user: user }),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_AddCustomWord_AddCustomWord__WEBPACK_IMPORTED_MODULE_10__["default"], { handleShowAlert: handleShowAlert }),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_AddCustomWord_AddCustomWord__WEBPACK_IMPORTED_MODULE_10__["default"], { handleShowAlert: handleShowAlert, getUserWordsInfo: getUserWordsInfo }),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_WordsList_WordsList__WEBPACK_IMPORTED_MODULE_5__["default"], { handlePageClick: handlePageClick, handleRemoveWord: handleRemoveWord, handleAddIllustration: handleAddIllustration }),
         showIllustrationModal && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_IllustrationModal_IllustrationModal__WEBPACK_IMPORTED_MODULE_7__["default"], { setShowIllustrationModal: setShowIllustrationModal, currentWordIdIllustration: currentWordIdIllustration, handleShowAlert: handleShowAlert })),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_PracticeWordsSection_PracticeWordsSection__WEBPACK_IMPORTED_MODULE_8__["default"], { setShowPracticeWordsModal: setShowPracticeWordsModal, allowPracticeWords: ((_c = (_b = words === null || words === void 0 ? void 0 : words.result) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 0 ? true : false }),

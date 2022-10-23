@@ -4,7 +4,7 @@ import WORDSACTIONS from '../../../store/actions/wordsActions'
 import USERACTIONS from '../../../store/actions/userActions'
 import { connect } from 'react-redux'
 
-const AddCustomWord = ({ handleShowAlert, user, words, config, createWords }) => {
+const AddCustomWord = ({ handleShowAlert, user, words, config, createWords, getUserWordsInfo }) => {
   const [word, setWord] = React.useState('')
 
   const handleSubmit = (e) => {
@@ -37,6 +37,8 @@ const AddCustomWord = ({ handleShowAlert, user, words, config, createWords }) =>
                 user?.token,
               )
               createWords(wordsResult)
+
+              getUserWordsInfo()
 
               return handleShowAlert(`Poprawnie zapisano - ${word} - ${translatedWord}`, 'success')
             })

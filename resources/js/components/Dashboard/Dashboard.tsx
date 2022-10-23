@@ -67,7 +67,7 @@ const Dashboard = ({
     })
 
     removeWord(id)
-
+    getUserWordsInfo()
     handleShowAlert('Prawidłowo usunięto.', 'success')
   }
 
@@ -84,16 +84,20 @@ const Dashboard = ({
     setCurrentWordIdIllustration(id)
   }
 
-  React.useEffect(() => {
+  const getUserWordsInfo = () => {
     getUserWordCounts()
     handleCheckWordsList()
+  }
+
+  React.useEffect(() => {
+    getUserWordsInfo()
   }, [user?.id])
 
   return (
     <div className='dashboard'>
       <Statistics user={user} />
 
-      <AddCustomWord handleShowAlert={handleShowAlert} />
+      <AddCustomWord handleShowAlert={handleShowAlert} getUserWordsInfo={getUserWordsInfo} />
 
       <WordsList
         handlePageClick={handlePageClick}
