@@ -1,6 +1,6 @@
 import * as React from 'react'
-import userActions from '../../modules/actions/userActions'
-import wordsActions from '../../modules/actions/wordsActions'
+import userActions from '../../store/actions/userActions'
+import wordsActions from '../../store/actions/wordsActions'
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm/LoginForm'
 import { handlePostRequest, handleGetRequest } from './../helpers/api'

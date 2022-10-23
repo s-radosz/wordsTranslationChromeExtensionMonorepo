@@ -11,7 +11,7 @@ import Dashboard from './Dashboard/Dashboard'
 import Login from './Login/Login'
 import { MainProps, MainState } from './Main.interface'
 import { Provider as ReduxProvider } from 'react-redux'
-import configureStore from './../modules/store'
+import configureStore from './../store/store'
 import LoginCheckMiddleware from './helpers/LoginCheckMiddleware'
 
 //@ts-ignore

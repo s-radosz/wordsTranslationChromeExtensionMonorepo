@@ -1,6 +1,6 @@
 import * as React from 'react'
-import WORDSACTIONS from '../../modules/actions/wordsActions'
-import USERACTIONS from '../../modules/actions/userActions'
+import WORDSACTIONS from '../../store/actions/wordsActions'
+import USERACTIONS from '../../store/actions/userActions'
 import { connect } from 'react-redux'
 import { handleGetRequest, handleRemoveRequest } from './../helpers/api'
 import WordsList from './WordsList/WordsList'

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import useFetchData from './../../../hooks/useFetchData'
 import { useDispatch, useSelector } from 'react-redux'
-import LANGUAGES_ACTIONS from '../../../modules/actions/configActions'
-import TRANSLATION_ACTIONS from '../../../modules/actions/translationActions'
+import LANGUAGES_ACTIONS from '../../../store/actions/configActions'
+import TRANSLATION_ACTIONS from '../../../store/actions/translationActions'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -15,14 +15,15 @@ const LanguageSwitch = () => {
 
   const dispatch = useDispatch()
 
-  const handleChange = (event) => {
+  const handleChange = (event: any, isFromLocalStorage?: boolean) => {
     // dispatch({ type: LANGUAGES_ACTIONS.setLanguageName, languageName: event.target.value });
     dispatch(
       LANGUAGES_ACTIONS?.setLanguageName({
-        languageName: event?.target?.value,
+        languageName: isFromLocalStorage ? event : event?.target?.value,
       }),
     )
-    setCountry(event?.target?.value)
+    setCountry(isFromLocalStorage ? event : event?.target?.value)
+    localStorage.setItem('pageLanguage', isFromLocalStorage ? event : event?.target?.value)
   }
 
   const handleClose = () => {
@@ -41,25 +42,20 @@ const LanguageSwitch = () => {
 
   //@ts-ignore
   useEffect(() => {
-    console.log('1')
-
     const getTranslationsByData = async () => {
-      // dispatch({ type: LANGUAGES_ACTIONS.setLanguages, languages: data });
       dispatch(LANGUAGES_ACTIONS?.setLanguages({ languages: data }))
 
       try {
         const response = await axios.post('/api/translations', {
           languageName: country,
         })
-        console.log(['response?.data', response?.data])
-        // dispatch({ type: TRANSLATION_ACTIONS.setTranslations, translations: response?.data });
         dispatch(
           TRANSLATION_ACTIONS?.setTranslations({
             translations: response?.data,
           }),
         )
       } catch (error) {
-        console.error(error)
+        // console.error(error)
       }
     }
 
@@ -71,14 +67,17 @@ const LanguageSwitch = () => {
 
   //@ts-ignore
   useEffect(() => {
-    console.log('2')
+    const pageLanguage = localStorage?.getItem('pageLanguage')
+
+    if (pageLanguage) {
+      handleChange(pageLanguage, true)
+    }
 
     const getTranslationsByCountry = async () => {
       try {
         const response = await axios.post('/api/translations', {
-          languageName: country,
+          languageName: pageLanguage ? pageLanguage : country,
         })
-        console.log(['response?.data', response?.data])
         dispatch(
           TRANSLATION_ACTIONS?.setTranslations({
             translations: response?.data,
@@ -89,7 +88,7 @@ const LanguageSwitch = () => {
       }
     }
 
-    if (country) {
+    if (pageLanguage || country) {
       getTranslationsByCountry()
     }
   }, [country])
@@ -107,7 +106,7 @@ const LanguageSwitch = () => {
           onOpen={handleOpen}
           value={country}
           name='country'
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, false)}
           inputProps={{
             id: 'open-select',
           }}

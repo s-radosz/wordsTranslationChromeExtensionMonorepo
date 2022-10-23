@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ACTIONS from '../../../modules/actions/wordsActions'
+import ACTIONS from '../../../store/actions/wordsActions'
 import { connect } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import WordsListRow from './WordsListRow/WordsListRow'

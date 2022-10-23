@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ACTIONS from '../../modules/actions/userActions'
+import ACTIONS from '../../store/actions/userActions'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 

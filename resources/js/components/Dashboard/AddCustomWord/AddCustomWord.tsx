@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { handlePostRequest, handleGetRequest } from './../../helpers/api'
-import WORDSACTIONS from '../../../modules/actions/wordsActions'
-import USERACTIONS from '../../../modules/actions/userActions'
+import WORDSACTIONS from '../../../store/actions/wordsActions'
+import USERACTIONS from '../../../store/actions/userActions'
 import { connect } from 'react-redux'
 
 const AddCustomWord = ({ handleShowAlert, user, words, config, createWords }) => {

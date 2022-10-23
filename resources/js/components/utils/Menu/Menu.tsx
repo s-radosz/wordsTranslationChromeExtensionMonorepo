@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import USERACTIONS from '../../../modules/actions/userActions'
+import USERACTIONS from '../../../store/actions/userActions'
 import LanguageSwitch from './../LanguageSwitch/LanguageSwitch'
 import useReturnTranslation from './../../../hooks/useReturnTranslation'
 

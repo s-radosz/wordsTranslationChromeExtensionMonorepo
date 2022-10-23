@@ -1,5 +1,5 @@
-import userActions from '../../../modules/actions/userActions'
-import actionTypes from './../../../modules/actionTypes'
+import userActions from '../../../store/actions/userActions'
+import actionTypes from './../../../store/actionTypes'
 
 describe('user actions', () => {
   it('should create an action to add user', () => {

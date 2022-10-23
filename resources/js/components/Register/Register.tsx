@@ -1,6 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
-import ACTIONS from '../../modules/actions/userActions'
+import ACTIONS from '../../store/actions/userActions'
 import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
