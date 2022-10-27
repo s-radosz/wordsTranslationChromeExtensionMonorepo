@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import WordsListRow from './WordsListRow/WordsListRow'
 
-const WordsList = ({ handlePageClick, handleAddIllustration, handleRemoveWord, words }) => {
+const WordsList = ({ handlePageClick, handleAddIllustration, handleRemoveWord, words, user }) => {
   return (
     <>
       {words?.result?.data?.length && (
@@ -14,7 +14,7 @@ const WordsList = ({ handlePageClick, handleAddIllustration, handleRemoveWord, w
               <tr>
                 <th scope='col'>#</th>
                 <th scope='col'>EN</th>
-                <th scope='col'>PL</th>
+                <th scope='col'>{user?.translate_from?.toUpperCase()}</th>
                 <th scope='col'></th>
               </tr>
             </thead>
@@ -28,6 +28,7 @@ const WordsList = ({ handlePageClick, handleAddIllustration, handleRemoveWord, w
                       i={i}
                       handleRemoveWord={handleRemoveWord}
                       handleAddIllustration={handleAddIllustration}
+                      user={user}
                     />
                   )
                 })}

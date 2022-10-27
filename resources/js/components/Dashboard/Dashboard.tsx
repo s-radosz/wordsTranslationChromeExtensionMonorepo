@@ -57,9 +57,11 @@ const Dashboard = ({
   }
 
   const handleRemoveWord = async (id: number) => {
+    console.log(['user?.translate_from', user?.translate_from])
     await handleRemoveRequest(`${config?.paths?.API_URL}/words/remove`, {
       data: {
         id: id,
+        userTranslateFrom: user?.translate_from,
       },
       headers: {
         Authorization: `Bearer ${user?.token}`,

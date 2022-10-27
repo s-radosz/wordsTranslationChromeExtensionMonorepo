@@ -145,7 +145,24 @@ class TranslationSeeder extends Seeder
             ['language_name' => "es", 'title' => 'hi', 'translation' => 'Hola', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
             ['language_name' => "fr", 'title' => 'hi', 'translation' => "Salut", 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")],  
             ['language_name' => "pl", 'title' => 'hi', 'translation' => 'Czesc', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
-        );
+
+            ['language_name' => "en", 'title' => 'settings', 'translation' => 'Settings', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")],
+            ['language_name' => "de", 'title' => 'settings', 'translation' => 'die Einstellungen', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
+            ['language_name' => "es", 'title' => 'settings', 'translation' => 'Ajustes', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
+            ['language_name' => "fr", 'title' => 'settings', 'translation' => "Réglages", 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")],  
+            ['language_name' => "pl", 'title' => 'settings', 'translation' => 'Ustawienia', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
+            
+            ['language_name' => "en", 'title' => 'TranslateToEnglishFrom', 'translation' => 'Translate to English from:', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")],
+            ['language_name' => "de", 'title' => 'TranslateToEnglishFrom', 'translation' => 'Ins Englische übersetzen von:', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
+            ['language_name' => "es", 'title' => 'TranslateToEnglishFrom', 'translation' => 'Traducir al inglés desde:', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
+            ['language_name' => "fr", 'title' => 'TranslateToEnglishFrom', 'translation' => "Traduire en anglais à partir de:", 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")],  
+            ['language_name' => "pl", 'title' => 'TranslateToEnglishFrom', 'translation' => 'Tłumacz z angielskiego na:', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")], 
+        
+        
+        
+            
+        
+          );
 
         
         

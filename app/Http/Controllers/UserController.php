@@ -119,4 +119,23 @@ class UserController extends Controller
             return response()->json(['result' => $e->getMessage()], 401);
         }
     }
+
+    public function saveUserTranslateFrom(Request $request) {
+        try {
+            $userId = $request->userId;
+            $language = $request->language;
+
+            $updatedUser = User::where('id', $userId)
+                ->update(array('translate_from' => $language));
+
+            return response()->json(['result' => [
+                'updatedUser' => $updatedUser
+            ]], 200);
+        } catch (\Exception $e) {
+            $user = User::where('id', $userId)->get();
+            $this->storeErrorLog($user->id, '/saveUserTranslateFrom', $e->getMessage());
+
+            return response()->json(['result' => $e->getMessage()], 401);
+        }
+    }
 }

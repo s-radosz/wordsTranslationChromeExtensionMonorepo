@@ -7,7 +7,6 @@ describe('Practice Modal Tests', function () {
     cy.get('#login-submit').click()
 
     cy.url().should('contain', '/panel')
-    cy.get('#logout-btn').should('be.visible')
 
     cy.get('#custom-new-word-input').type('dog')
     cy.get('#custom-new-word-submit').click()

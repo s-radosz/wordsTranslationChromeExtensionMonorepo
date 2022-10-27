@@ -86,6 +86,18 @@ composer dump-autoload
 ./vendor/bin/phpunit
 ```
 
+## Cypress tests
+
+### headless
+```
+npx cypress run --headless
+```
+
+### with browser
+```
+npm run cypress
+```
+
 ## Preview
 
 ![Screenshot](desktop1.png)

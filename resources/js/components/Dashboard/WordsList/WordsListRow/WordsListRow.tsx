@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-const WordsListRow = ({ word, handleRemoveWord, handleAddIllustration, i }) => {
+const WordsListRow = ({ user, word, handleRemoveWord, handleAddIllustration, i }) => {
   return (
     <tr className='tranlation__row' key={i}>
-      <th scope='row'>{word?.id}</th>
+      <th scope='row'>{i + 1}</th>
       <td>
         <p>{word?.en}</p>
       </td>
       <td>
-        <p>{word?.pl}</p>
+        <p>{word[user?.translate_from]}</p>
       </td>
       <td>
         <button

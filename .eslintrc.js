@@ -65,6 +65,7 @@ module.exports = {
     'no-func-assign': 0,
     'no-proto': 0,
     'no-void': 0,
+    '@typescript-eslint/restrict-plus-operands': 0,
   },
   settings: {
     react: {

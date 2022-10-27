@@ -25,6 +25,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('words/illustartion/new', 'WordIllustrationsController@store');
     Route::post('words/illustartion/find', 'WordIllustrationsController@findIllustration');
     Route::delete('words/illustartion/remove', 'WordIllustrationsController@remove');
+
+    Route::post('user/update-translate-from', 'UserController@saveUserTranslateFrom');
+    
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

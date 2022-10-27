@@ -7,6 +7,7 @@ const defaultState = {
   countSavedWordsOverall: 0,
   countSavedWordsLastWeek: 0,
   countSavedWordsToday: 0,
+  translate_from: '',
 }
 
 export default function user(state = defaultState, action) {
@@ -19,6 +20,7 @@ export default function user(state = defaultState, action) {
         token: action.payload.token,
         email_verified_at: action.payload.user.email_verified_at,
         id: action.payload.user.id,
+        translate_from: action.payload.user.translate_from,
       }
     }
 

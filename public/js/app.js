@@ -82033,7 +82033,7 @@ var AddCustomWord = function (_a) {
     var handleSubmit = function (e) {
         e.preventDefault();
         if (word) {
-            fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pl&dt=t&q=".concat(word))
+            fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=".concat(user.translate_from, "&dt=t&q=").concat(word))
                 .then(function (response) { return response === null || response === void 0 ? void 0 : response.json(); })
                 .then(function (json) { return __awaiter(void 0, void 0, void 0, function () {
                 var translatedWord;
@@ -82044,8 +82044,9 @@ var AddCustomWord = function (_a) {
                             translatedWord = json[0][0][0];
                             return [4, Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["handlePostRequest"])("".concat((_a = config === null || config === void 0 ? void 0 : config.paths) === null || _a === void 0 ? void 0 : _a.API_URL, "/words/save"), {
                                     userId: user === null || user === void 0 ? void 0 : user.id,
-                                    en: word,
-                                    pl: translatedWord,
+                                    enWord: word,
+                                    translatedWord: translatedWord,
+                                    userTranslateFrom: user === null || user === void 0 ? void 0 : user.translate_from,
                                 }, user === null || user === void 0 ? void 0 : user.token)
                                     .then(function (res) { return __awaiter(void 0, void 0, void 0, function () {
                                     var wordsResult;
@@ -82224,14 +82225,17 @@ var Dashboard = function (_a) {
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4, Object(_helpers_api__WEBPACK_IMPORTED_MODULE_4__["handleRemoveRequest"])("".concat((_a = config === null || config === void 0 ? void 0 : config.paths) === null || _a === void 0 ? void 0 : _a.API_URL, "/words/remove"), {
-                        data: {
-                            id: id,
-                        },
-                        headers: {
-                            Authorization: "Bearer ".concat(user === null || user === void 0 ? void 0 : user.token),
-                        },
-                    })];
+                case 0:
+                    console.log(['user?.translate_from', user === null || user === void 0 ? void 0 : user.translate_from]);
+                    return [4, Object(_helpers_api__WEBPACK_IMPORTED_MODULE_4__["handleRemoveRequest"])("".concat((_a = config === null || config === void 0 ? void 0 : config.paths) === null || _a === void 0 ? void 0 : _a.API_URL, "/words/remove"), {
+                            data: {
+                                id: id,
+                                userTranslateFrom: user === null || user === void 0 ? void 0 : user.translate_from,
+                            },
+                            headers: {
+                                Authorization: "Bearer ".concat(user === null || user === void 0 ? void 0 : user.token),
+                            },
+                        })];
                 case 1:
                     _b.sent();
                     removeWord(id);
@@ -82864,19 +82868,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var WordsList = function (_a) {
-    var _b, _c, _d, _e, _f;
-    var handlePageClick = _a.handlePageClick, handleAddIllustration = _a.handleAddIllustration, handleRemoveWord = _a.handleRemoveWord, words = _a.words;
+    var _b, _c, _d, _e, _f, _g;
+    var handlePageClick = _a.handlePageClick, handleAddIllustration = _a.handleAddIllustration, handleRemoveWord = _a.handleRemoveWord, words = _a.words, user = _a.user;
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, ((_c = (_b = words === null || words === void 0 ? void 0 : words.result) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'table-responsive' },
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("table", { className: 'table', id: 'words-table' },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("thead", null,
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("tr", null,
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'col' }, "#"),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'col' }, "EN"),
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'col' }, "PL"),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'col' }, (_d = user === null || user === void 0 ? void 0 : user.translate_from) === null || _d === void 0 ? void 0 : _d.toUpperCase()),
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'col' }))),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("tbody", null, ((_e = (_d = words === null || words === void 0 ? void 0 : words.result) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.length) &&
-                ((_f = words === null || words === void 0 ? void 0 : words.result) === null || _f === void 0 ? void 0 : _f.data.map(function (word, i) {
-                    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_WordsListRow_WordsListRow__WEBPACK_IMPORTED_MODULE_4__["default"], { key: "word-".concat(i), word: word, i: i, handleRemoveWord: handleRemoveWord, handleAddIllustration: handleAddIllustration }));
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("tbody", null, ((_f = (_e = words === null || words === void 0 ? void 0 : words.result) === null || _e === void 0 ? void 0 : _e.data) === null || _f === void 0 ? void 0 : _f.length) &&
+                ((_g = words === null || words === void 0 ? void 0 : words.result) === null || _g === void 0 ? void 0 : _g.data.map(function (word, i) {
+                    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_WordsListRow_WordsListRow__WEBPACK_IMPORTED_MODULE_4__["default"], { key: "word-".concat(i), word: word, i: i, handleRemoveWord: handleRemoveWord, handleAddIllustration: handleAddIllustration, user: user }));
                 })))),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("nav", { "aria-label": 'Page navigation example' },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_paginate__WEBPACK_IMPORTED_MODULE_3___default.a, { previousLabel: false, nextLabell: false, forcePage: words === null || words === void 0 ? void 0 : words.current_page, breakLabel: '...', breakClassName: 'break-me', pageCount: words === null || words === void 0 ? void 0 : words.last_page, marginPagesDisplayed: 1, pageRangeDisplayed: 2, onPageChange: handlePageClick, containerClassName: 'pagination', subContainerClassName: 'pages pagination', activeClassName: 'active' }))))));
@@ -82907,13 +82911,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var WordsListRow = function (_a) {
-    var word = _a.word, handleRemoveWord = _a.handleRemoveWord, handleAddIllustration = _a.handleAddIllustration, i = _a.i;
+    var user = _a.user, word = _a.word, handleRemoveWord = _a.handleRemoveWord, handleAddIllustration = _a.handleAddIllustration, i = _a.i;
     return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("tr", { className: 'tranlation__row', key: i },
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'row' }, word === null || word === void 0 ? void 0 : word.id),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("th", { scope: 'row' }, i + 1),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, word === null || word === void 0 ? void 0 : word.en)),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, word === null || word === void 0 ? void 0 : word.pl)),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, word[user === null || user === void 0 ? void 0 : user.translate_from])),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'btn red-btn box-shadow', onClick: function () { return handleRemoveWord(word === null || word === void 0 ? void 0 : word.id); }, id: "delete-row-".concat(word === null || word === void 0 ? void 0 : word.en) }, "Usu\u0144")),
         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("td", null,
@@ -83260,10 +83264,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Home/Home */ "./resources/js/components/Home/Home.tsx");
 /* harmony import */ var _Register_Register__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Register/Register */ "./resources/js/components/Register/Register.tsx");
 /* harmony import */ var _Dashboard_Dashboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Dashboard/Dashboard */ "./resources/js/components/Dashboard/Dashboard.tsx");
-/* harmony import */ var _Login_Login__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Login/Login */ "./resources/js/components/Login/Login.tsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../store/store */ "./resources/js/store/store.js");
-/* harmony import */ var _helpers_LoginCheckMiddleware__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/LoginCheckMiddleware */ "./resources/js/components/helpers/LoginCheckMiddleware.tsx");
+/* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Settings/Settings */ "./resources/js/components/Settings/Settings.tsx");
+/* harmony import */ var _Login_Login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Login/Login */ "./resources/js/components/Login/Login.tsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../store/store */ "./resources/js/store/store.js");
+/* harmony import */ var _helpers_LoginCheckMiddleware__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./helpers/LoginCheckMiddleware */ "./resources/js/components/helpers/LoginCheckMiddleware.tsx");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -83293,7 +83298,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
-var reduxStore = Object(_store_store__WEBPACK_IMPORTED_MODULE_11__["default"])(window.REDUX_INITIAL_DATA);
+
+var reduxStore = Object(_store_store__WEBPACK_IMPORTED_MODULE_12__["default"])(window.REDUX_INITIAL_DATA);
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main(props) {
@@ -83354,13 +83360,19 @@ var Main = (function (_super) {
             {
                 path: '/login',
                 name: 'Login',
-                Component: _Login_Login__WEBPACK_IMPORTED_MODULE_9__["default"],
+                Component: _Login_Login__WEBPACK_IMPORTED_MODULE_10__["default"],
                 public: true,
             },
             {
                 path: '/panel',
                 name: 'Dashboard',
                 Component: _Dashboard_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"],
+                public: false,
+            },
+            {
+                path: '/settings',
+                name: 'Settings',
+                Component: _Settings_Settings__WEBPACK_IMPORTED_MODULE_9__["default"],
                 public: false,
             },
             {
@@ -83381,10 +83393,10 @@ var Main = (function (_super) {
         var _this = this;
         var _a;
         var _b = this.state, showLoader = _b.showLoader, alertMessage = _b.alertMessage, alertStatus = _b.alertStatus, allowRedirect = _b.allowRedirect, redirectedPath = _b.redirectedPath;
-        return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_redux__WEBPACK_IMPORTED_MODULE_10__["Provider"], { store: reduxStore },
+        return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_redux__WEBPACK_IMPORTED_MODULE_11__["Provider"], { store: reduxStore },
             alertMessage && alertStatus && react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_utils_Alert_Alert__WEBPACK_IMPORTED_MODULE_3__["default"], { message: alertMessage, status: alertStatus }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], { history: _History__WEBPACK_IMPORTED_MODULE_2__["default"] },
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_helpers_LoginCheckMiddleware__WEBPACK_IMPORTED_MODULE_12__["default"], null),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_helpers_LoginCheckMiddleware__WEBPACK_IMPORTED_MODULE_13__["default"], null),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_utils_Menu_Menu__WEBPACK_IMPORTED_MODULE_4__["default"], { handleChangePath: this.handleChangePath }),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'container' },
                     allowRedirect && redirectedPath && react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], { to: redirectedPath }),
@@ -83505,6 +83517,195 @@ var mapDispatchToProps = function (dispatch) { return ({
     createUser: function (user) { return dispatch(_store_actions_userActions__WEBPACK_IMPORTED_MODULE_2__["default"].createUser(user)); },
 }); };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(Register));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Settings/Settings.tsx":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Settings/Settings.tsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_actions_wordsActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../store/actions/wordsActions */ "./resources/js/store/actions/wordsActions.js");
+/* harmony import */ var _store_actions_userActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/actions/userActions */ "./resources/js/store/actions/userActions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../helpers/api */ "./resources/js/components/helpers/api.tsx");
+/* harmony import */ var _hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../hooks/useReturnTranslation */ "./resources/js/hooks/useReturnTranslation.tsx");
+/* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/InputLabel */ "./node_modules/@material-ui/core/InputLabel/index.js");
+/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/MenuItem/index.js");
+/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/FormControl/index.js");
+/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/Select/index.js");
+/* harmony import */ var _hooks_useFetchData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../hooks/useFetchData */ "./resources/js/hooks/useFetchData.tsx");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+var Settings = function (_a) {
+    var handleChangePath = _a.handleChangePath, handleShowAlert = _a.handleShowAlert, translations = _a.translations, user = _a.user, config = _a.config, logout = _a.logout, createUser = _a.createUser, createWords = _a.createWords;
+    var _b = react__WEBPACK_IMPORTED_MODULE_0__["useState"](null), country = _b[0], setCountry = _b[1];
+    var _c = react__WEBPACK_IMPORTED_MODULE_0__["useState"](false), open = _c[0], setOpen = _c[1];
+    react__WEBPACK_IMPORTED_MODULE_0__["useEffect"](function () {
+        if (user) {
+            console.log(['user', user]);
+        }
+    }, []);
+    react__WEBPACK_IMPORTED_MODULE_0__["useEffect"](function () {
+        setCountry(user === null || user === void 0 ? void 0 : user.translate_from);
+    }, [user === null || user === void 0 ? void 0 : user.translate_from]);
+    var _d = Object(_hooks_useFetchData__WEBPACK_IMPORTED_MODULE_10__["default"])('/api/languages'), data = _d.data, loading = _d.loading;
+    var handleLogout = function () {
+        logout();
+        handleChangePath('/');
+    };
+    var handleClose = function () {
+        setOpen(false);
+    };
+    var handleOpen = function () {
+        setOpen(true);
+    };
+    var getWordsList = function () { return __awaiter(void 0, void 0, void 0, function () {
+        var wordsResult;
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4, Object(_helpers_api__WEBPACK_IMPORTED_MODULE_4__["handleGetRequest"])("".concat((_a = config === null || config === void 0 ? void 0 : config.paths) === null || _a === void 0 ? void 0 : _a.API_URL, "/words/all/").concat(user === null || user === void 0 ? void 0 : user.id), user === null || user === void 0 ? void 0 : user.token)];
+                case 1:
+                    wordsResult = _b.sent();
+                    createWords(wordsResult);
+                    return [2];
+            }
+        });
+    }); };
+    var handleChange = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+        var token;
+        var _a, _b, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    setCountry((_a = event === null || event === void 0 ? void 0 : event.target) === null || _a === void 0 ? void 0 : _a.value);
+                    token = user === null || user === void 0 ? void 0 : user.token;
+                    return [4, Object(_helpers_api__WEBPACK_IMPORTED_MODULE_4__["handlePostRequest"])("".concat((_b = config === null || config === void 0 ? void 0 : config.paths) === null || _b === void 0 ? void 0 : _b.API_URL, "/user/update-translate-from"), {
+                            userId: user === null || user === void 0 ? void 0 : user.id,
+                            language: (_c = event === null || event === void 0 ? void 0 : event.target) === null || _c === void 0 ? void 0 : _c.value,
+                        }, user === null || user === void 0 ? void 0 : user.token)
+                            .then(function (res) { return __awaiter(void 0, void 0, void 0, function () {
+                            var user;
+                            var _a;
+                            return __generator(this, function (_b) {
+                                switch (_b.label) {
+                                    case 0:
+                                        user = JSON.parse(localStorage === null || localStorage === void 0 ? void 0 : localStorage.getItem('user'));
+                                        user = __assign(__assign({}, user), { translate_from: (_a = event === null || event === void 0 ? void 0 : event.target) === null || _a === void 0 ? void 0 : _a.value });
+                                        localStorage === null || localStorage === void 0 ? void 0 : localStorage.setItem('user', JSON.stringify(user));
+                                        console.log(['user?.token', token, user]);
+                                        createUser({
+                                            token: token,
+                                            user: user,
+                                        });
+                                        return [4, getWordsList()];
+                                    case 1:
+                                        _b.sent();
+                                        return [2, handleShowAlert("Poprawnie zapisano", 'success')];
+                                }
+                            });
+                        }); })
+                            .catch(function (err) {
+                            return handleShowAlert('Wystąpił błąd przy zapisie', 'danger');
+                        })];
+                case 1:
+                    _d.sent();
+                    return [2];
+            }
+        });
+    }); };
+    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'settings' },
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'settings__select-country' },
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translations, 'TranslateToEnglishFrom')),
+            (data === null || data === void 0 ? void 0 : data.length) ? (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_8__["default"], { className: 'language-switch' },
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_6__["default"], { htmlFor: 'open-select' }),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_9__["default"], { open: open, onClose: handleClose, onOpen: handleOpen, value: country, name: 'country', onChange: function (event) { return handleChange(event); }, inputProps: {
+                        id: 'open-select',
+                    } }, data === null || data === void 0 ? void 0 : data.map(function (option, key) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_7__["default"], { value: option === null || option === void 0 ? void 0 : option.name, key: key },
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("img", { src: option === null || option === void 0 ? void 0 : option.img_src, alt: option === null || option === void 0 ? void 0 : option.name }),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, option === null || option === void 0 ? void 0 : option.name))); })))) : null),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'menu-btn blue-btn', onClick: handleLogout, id: 'logout-btn' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translations, 'logOut')))));
+};
+var mapStateToProps = function (state) {
+    var _a;
+    return ({
+        user: state.user,
+        words: state.words || [],
+        config: state.config,
+        translations: (_a = state === null || state === void 0 ? void 0 : state.translation) === null || _a === void 0 ? void 0 : _a.list,
+    });
+};
+var mapDispatchToProps = function (dispatch) { return ({
+    logout: function () { return dispatch(_store_actions_userActions__WEBPACK_IMPORTED_MODULE_2__["default"].logoutUser()); },
+    createUser: function (user) { return dispatch(_store_actions_userActions__WEBPACK_IMPORTED_MODULE_2__["default"].createUser(user)); },
+    createWords: function (wordsData) { return dispatch(_store_actions_wordsActions__WEBPACK_IMPORTED_MODULE_1__["default"].createWords(wordsData)); },
+}); };
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(Settings));
 
 
 /***/ }),
@@ -83963,12 +84164,8 @@ var Menu = function (_a) {
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'menu__right-routes' },
                     (user === null || user === void 0 ? void 0 : user.email) ? (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null,
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'menu__right-routes--top' },
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: 'menu-link' },
-                                Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'hi'),
-                                ", ", user === null || user === void 0 ? void 0 :
-                                user.email),
-                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/panel', className: 'menu-link' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'startLearning'))),
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: 'menu-btn blue-btn', onClick: handleLogout, id: 'logout-btn' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'logOut')))) : (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null,
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/panel', className: 'menu-link menu-link__panel' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'startLearning')),
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/settings', className: 'menu-link menu-link__settings' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'settings'))))) : (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null,
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'menu__right-routes--top' },
                             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/login', className: 'menu-link' }, Object(_hooks_useReturnTranslation__WEBPACK_IMPORTED_MODULE_5__["default"])(translation, 'login'))),
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], { to: '/register' },
@@ -84380,7 +84577,8 @@ var defaultState = {
   email_verified_at: '',
   countSavedWordsOverall: 0,
   countSavedWordsLastWeek: 0,
-  countSavedWordsToday: 0
+  countSavedWordsToday: 0,
+  translate_from: ''
 };
 function user() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
@@ -84393,7 +84591,8 @@ function user() {
           email: action.payload.user.email,
           token: action.payload.token,
           email_verified_at: action.payload.user.email_verified_at,
-          id: action.payload.user.id
+          id: action.payload.user.id,
+          translate_from: action.payload.user.translate_from
         });
       }
     case _actionTypes__WEBPACK_IMPORTED_MODULE_0__["default"].LOGOUT_USER:

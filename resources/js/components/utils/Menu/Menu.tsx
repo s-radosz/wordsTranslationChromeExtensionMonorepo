@@ -31,17 +31,20 @@ const Menu = ({ translation, user, logoutUser, handleChangePath }) => {
             {user?.email ? (
               <>
                 <div className='menu__right-routes--top'>
-                  <p className='menu-link'>
+                  {/* <p className='menu-link'>
                     {useReturnTranslation(translation, 'hi')}, {user?.email}
-                  </p>
+                  </p> */}
 
-                  <Link to='/panel' className='menu-link'>
+                  <Link to='/panel' className='menu-link menu-link__panel'>
                     {useReturnTranslation(translation, 'startLearning')}
                   </Link>
+                  <Link to='/settings' className='menu-link menu-link__settings'>
+                    {useReturnTranslation(translation, 'settings')}
+                  </Link>
                 </div>
-                <button className='menu-btn blue-btn' onClick={handleLogout} id='logout-btn'>
+                {/* <button className='menu-btn blue-btn' onClick={handleLogout} id='logout-btn'>
                   {useReturnTranslation(translation, 'logOut')}
-                </button>
+                </button> */}
               </>
             ) : (
               <>

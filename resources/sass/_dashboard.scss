@@ -201,6 +201,21 @@
     }
   }
 }
+
+.settings {
+  min-height: calc(100vh - 210px);
+  width: 90%;
+  margin: auto;
+  padding: 30px 0;
+  max-width: 1200px;
+
+  &__select-country {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+}
+
 @media (max-width: 480px) {
   .dashboard {
     margin-top: 150px;
@@ -347,6 +362,11 @@
       padding: 0 50px;
     }
   }
+
+  .settings {
+    min-height: calc(100vh - 280px);
+    padding: 200px 0 20px 0;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 980px) {
@@ -416,6 +436,11 @@
       width: 90%;
       margin: 0 auto;
     }
+  }
+
+  .settings {
+    min-height: calc(100vh - 250px);
+    padding: 180px 0 20px 0;
   }
 }
 

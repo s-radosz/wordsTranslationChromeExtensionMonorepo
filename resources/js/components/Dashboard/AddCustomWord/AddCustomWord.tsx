@@ -12,7 +12,7 @@ const AddCustomWord = ({ handleShowAlert, user, words, config, createWords, getU
 
     if (word) {
       fetch(
-        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pl&dt=t&q=${word}`,
+        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${user.translate_from}&dt=t&q=${word}`,
       )
         .then((response) => response?.json())
         .then(async (json) => {
@@ -22,8 +22,9 @@ const AddCustomWord = ({ handleShowAlert, user, words, config, createWords, getU
             `${config?.paths?.API_URL}/words/save`,
             {
               userId: user?.id,
-              en: word,
-              pl: translatedWord,
+              enWord: word,
+              translatedWord: translatedWord,
+              userTranslateFrom: user?.translate_from,
             },
             user?.token,
           )

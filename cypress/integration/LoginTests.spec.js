@@ -7,6 +7,5 @@ describe('Login Tests', function () {
     cy.get('#login-submit').click()
 
     cy.url().should('contain', '/panel')
-    cy.get('#logout-btn').should('be.visible')
   })
 })

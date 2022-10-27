@@ -16,7 +16,7 @@
          * @var array
          */
         protected $fillable = [
-            'name', 'email', 'password', 'user_level_id'
+            'name', 'email', 'password', 'user_level_id', 'translate_from'
         ];
 
         /**

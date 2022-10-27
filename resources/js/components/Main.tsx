@@ -8,6 +8,7 @@ import Footer from './utils/Footer/Footer'
 import Home from './Home/Home'
 import Register from './Register/Register'
 import Dashboard from './Dashboard/Dashboard'
+import Settings from './Settings/Settings'
 import Login from './Login/Login'
 import { MainProps, MainState } from './Main.interface'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -52,6 +53,12 @@ class Main extends Component<MainProps, MainState> {
         path: '/panel',
         name: 'Dashboard',
         Component: Dashboard,
+        public: false,
+      },
+      {
+        path: '/settings',
+        name: 'Settings',
+        Component: Settings,
         public: false,
       },
       {
